@@ -9,7 +9,9 @@ export default new Vuex.Store({
     firstFileData: [],
     SecondFileData: [],
     NameFile1: '',
-    NameFile2: ''
+    NameFile2: '',
+    firstHedaer: [],
+    SecondHeader: []
 
   },
   getters: {
@@ -26,6 +28,12 @@ export default new Vuex.Store({
     },
     SECOND_FILE_NAME: (state, payload) =>{
       state.NameFile2 = payload
+    },
+    FIRST_FILE_HEADER: (state, payload) =>{
+      state.firstHedaer = payload
+    },
+    SECOND_FILE_HEADER: (state, payload) =>{
+      state.SecondHeader = payload
     }
   },
   actions: {

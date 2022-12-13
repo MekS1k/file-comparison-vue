@@ -1,19 +1,3 @@
-# file-comparison-vue
+# Кодреану Виктор. Частично работающая программа :(
+https://file-comparison-vue.vercel.app/#/
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

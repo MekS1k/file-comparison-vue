@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="nextPage" v-if="first && second">
-      <button class="FromTo" @click="$router.push({ name: 'Results' })">
+      <button class="FromTo" @click="$router.push({ name: 'Comp' })">
         Next
       </button>
     </div>
