@@ -80,11 +80,13 @@ export default {
           let particalMatched_1 = true;
           let count = 0;
           this.fisrtHeaders.forEach((firstHeadersTable, index) => {
-            const secondHeadersTable = this.SecondHeaders[index];
+            let fisrtHeadersTable1 = firstHeadersTable;
+            let secondHeadersTable = this.SecondHeaders[index];
 
-            const celValue_1 = dataFirstTable[firstHeadersTable];
-            const celValue_2 = dataSecondTable[secondHeadersTable];
-            if (celValue_1 === celValue_2) {
+            let celValue_1 = dataFirstTable[fisrtHeadersTable1] + " ";
+            let celValue_2 = dataSecondTable[secondHeadersTable] + " ";
+
+            if (celValue_1.trim() === celValue_2.trim()) {
               particalMatched_1 = true;
             } else {
               allMatched_1 = false;
@@ -105,16 +107,15 @@ export default {
           this.allNon_1.push(dataFirstTable);
         }
       });
-      console.log("Полностью", this.allMatched_1);
-      console.log("Полностью не совпали", this.allNon_1);
-      console.log(this.particalMatched_1);
+      // console.log("Полностью", this.allMatched_1);
+      // console.log("Полностью не совпали", this.allNon_1);
+      // console.log(this.particalMatched_1);
       //Убираю дубликаты из массива
       const uniq = new Set(
         this.particalMatched_1.map((e) => JSON.stringify(e))
       );
       const res = Array.from(uniq).map((e) => JSON.parse(e));
       this.particalMatched_1 = res;
-      console.log(this.particalMatched_1);
 
       //данных которых нет в первой таблице
 
@@ -127,9 +128,9 @@ export default {
           this.SecondHeaders.forEach((SecondHeaders, index) => {
             const firstHeadersTable = this.fisrtHeaders[index];
 
-            const celValue_1 = dataFirstTable[firstHeadersTable];
-            const celValue_2 = dataSecondTable[SecondHeaders];
-            if (celValue_1 === celValue_2) {
+            const celValue_1 = dataFirstTable[firstHeadersTable] + " ";
+            const celValue_2 = dataSecondTable[SecondHeaders] + " ";
+            if (celValue_1.trim() === celValue_2.trim()) {
               particalMatched_2 = true;
             } else {
               allMatched_2 = false;
@@ -150,16 +151,16 @@ export default {
           this.allNon_2.push(dataSecondTable);
         }
       });
-      console.log("Полностью", this.allMatched_2);
-      console.log("Полностью не совпали", this.allNon_2);
-      console.log(this.particalMatched_2);
+      //console.log("Полностью", this.allMatched_2);
+      //console.log("Полностью не совпали", this.allNon_2);
+      //console.log(this.particalMatched_2);
       //Убираю дубликаты из массива
       const uniq1 = new Set(
         this.particalMatched_2.map((e) => JSON.stringify(e))
       );
       const res1 = Array.from(uniq).map((e) => JSON.parse(e));
       this.particalMatched_2 = res1;
-      console.log(this.particalMatched_2);
+      //console.log(this.particalMatched_2);
     },
   },
 };
