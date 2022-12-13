@@ -41,7 +41,7 @@
             v-for="(allNonTable1, index) in allNonTable"
             :key="allNonTable1.id"
           >
-            <b>{{ index }}</b> - {{ allNonTable1 }};</span
+            <b> {{ index }}</b> - {{ allNonTable1 }};</span
           >
         </div>
       </span>
