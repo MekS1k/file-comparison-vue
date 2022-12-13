@@ -28,7 +28,7 @@
             v-for="(allNonTable1, index) in allNonTable"
             :key="allNonTable1.id"
           >
-            {{ index }} - {{ allNonTable1 }};</span
+            <b> {{ index }}</b> - {{ allNonTable1 }};</span
           >
         </div>
       </span>
@@ -41,7 +41,7 @@
             v-for="(allNonTable1, index) in allNonTable"
             :key="allNonTable1.id"
           >
-            {{ index }} - {{ allNonTable1 }};</span
+            <b>{{ index }}</b> - {{ allNonTable1 }};</span
           >
         </div>
       </span>
@@ -192,6 +192,7 @@ export default {
   border: 2px solid;
   margin: 15px;
   padding: 20px;
+  font-size: 20px;
 }
 .particalMatched {
   color: rgb(255, 255, 255);
