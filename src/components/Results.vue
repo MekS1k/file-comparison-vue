@@ -1,50 +1,53 @@
 <template>
-  <div class="form">
-    <div class="res-blck">
-      <div>
-        <span
-          class="result"
-          v-for="(item, index) in particalMatched_1"
-          :key="item.id"
-        >
-          <div class="particalMatched">
-            Частично совпадающая пара номер - {{ index + 1 }}
-          </div>
-          <span v-for="item1 in item" :key="item1.id">
-            <div>
-              <span v-for="(item2, index2) in item1" :key="item2.id">
-                <b>{{ index2 }}</b> - {{ item2 }};
-              </span>
+  <div class="AllResult">
+    <span class="textResult">Результат сравнения</span>
+    <div class="form">
+      <div class="res-blck">
+        <div>
+          <span
+            class="result"
+            v-for="(item, index) in particalMatched_1"
+            :key="item.id"
+          >
+            <div class="particalMatched">
+              Частично совпадающая пара номер - {{ index + 1 }}
             </div>
+            <span v-for="item1 in item" :key="item1.id">
+              <div>
+                <span v-for="(item2, index2) in item1" :key="item2.id">
+                  <b>{{ index2 }}</b> - {{ item2 }};
+                </span>
+              </div>
+            </span>
           </span>
+        </div>
+      </div>
+      <div class="NonInclud" v-if="allNon_1 != ''">
+        Данные которые отсутствуют в файле {{ fileName2 }}
+        <span v-for="allNonTable in allNon_1" :key="allNonTable.id">
+          <div>
+            <span
+              v-for="(allNonTable1, index) in allNonTable"
+              :key="allNonTable1.id"
+            >
+              <b> {{ index }}</b> - {{ allNonTable1 }};</span
+            >
+          </div>
         </span>
       </div>
-    </div>
-    <div class="NonInclud" v-if="allNon_1 != ''">
-      Данные которые отсутствуют в файле {{ fileName2 }}
-      <span v-for="allNonTable in allNon_1" :key="allNonTable.id">
-        <div>
-          <span
-            v-for="(allNonTable1, index) in allNonTable"
-            :key="allNonTable1.id"
-          >
-            <b> {{ index }}</b> - {{ allNonTable1 }};</span
-          >
-        </div>
-      </span>
-    </div>
-    <div class="NonInclud" v-if="allNon_2 != ''">
-      Данные которые отсутсвуют в файле {{ fileName1 }}
-      <span v-for="allNonTable in allNon_2" :key="allNonTable.id">
-        <div>
-          <span
-            v-for="(allNonTable1, index) in allNonTable"
-            :key="allNonTable1.id"
-          >
-            <b> {{ index }}</b> - {{ allNonTable1 }};</span
-          >
-        </div>
-      </span>
+      <div class="NonInclud" v-if="allNon_2 != ''">
+        Данные которые отсутсвуют в файле {{ fileName1 }}
+        <span v-for="allNonTable in allNon_2" :key="allNonTable.id">
+          <div>
+            <span
+              v-for="(allNonTable1, index) in allNonTable"
+              :key="allNonTable1.id"
+            >
+              <b> {{ index }}</b> - {{ allNonTable1 }};</span
+            >
+          </div>
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -128,8 +131,8 @@ export default {
           this.SecondHeaders.forEach((SecondHeaders, index) => {
             const firstHeadersTable = this.fisrtHeaders[index];
 
-            const celValue_1 = dataFirstTable[firstHeadersTable] + " ";
-            const celValue_2 = dataSecondTable[SecondHeaders] + " ";
+            let celValue_1 = dataFirstTable[firstHeadersTable] + " ";
+            let celValue_2 = dataSecondTable[SecondHeaders] + " ";
             if (celValue_1.trim() === celValue_2.trim()) {
               particalMatched_2 = true;
             } else {
@@ -180,11 +183,12 @@ export default {
 }
 .result {
   display: block;
-  background-color: #4f8bc0;
-  border-radius: 15px;
+  background-color: #57d585;
+  border-radius: 60px;
   border: 2px solid;
   margin: 15px;
   padding: 20px;
+  width: 700px;
 }
 .NonInclud {
   display: block;
@@ -201,9 +205,25 @@ export default {
 }
 .form {
   border: 3px solid;
+  max-width: 800px;
+  margin: auto;
+  height: 450px;
+  overflow: auto;
+  border-radius: 70px;
+  overflow-x: hidden;
+  scrollbar-width: auto;
+}
+.AllResult {
+  border: 3px solid;
   max-width: 1200px;
   margin: auto;
-  height: 600px;
+  height: 550px;
   overflow: auto;
+  border-radius: 70px;
+  padding: 20px 0 0 0;
+}
+.textResult {
+  font-size: 25px;
+  font-weight: 900;
 }
 </style>

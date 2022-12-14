@@ -39,7 +39,7 @@
         Next
       </button>
     </div>
-    <div v-else>
+    <div v-else class="nonFile">
       <p>Загрузите 2 файла</p>
     </div>
   </div>
@@ -103,15 +103,21 @@ export default {
 
 <style>
 .AllFiles {
-  border: 1px solid;
-  border-radius: 15px;
+  border: 3px solid;
+  border-radius: 60px;
   width: 500px;
+  height: 300px;
   margin: 0 auto;
-  background-color: antiquewhite;
+  background-color: rgb(255, 255, 255);
   min-height: 105px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .FirstFile {
   margin: 0 0 10px;
+  padding: 80px 0 0 0;
 }
 .nextPage {
   margin-top: 10px;
@@ -121,7 +127,7 @@ export default {
   margin-top: 1px;
   border: 1px solid;
   border-radius: 10px;
-  background-color: #99ed84;
+  background-color: #57d585;
   font-size: 15px;
   font-weight: 400;
   height: 30px;
@@ -141,9 +147,13 @@ export default {
   font-size: 15px;
   font-weight: 400;
   text-decoration: none;
-  background-color: #99ed84;
+  background-color: #57d585;
+  margin: 50px;
 }
 .Uploading {
   margin-top: 10px;
+}
+.nonFile {
+  margin: 50px;
 }
 </style>
