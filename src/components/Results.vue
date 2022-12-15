@@ -78,9 +78,10 @@ export default {
       //данных которых нет во второй таблице
       this.$store.state.firstFileData.forEach((dataFirstTable) => {
         let allNonFirst = true;
+        let particalMatched_1 = true;
+        let particalMatchedForRow = [];
         this.$store.state.SecondFileData.forEach((dataSecondTable) => {
           let allMatched_1 = true;
-          let particalMatched_1 = true;
           let count = 0;
           this.fisrtHeaders.forEach((firstHeadersTable, index) => {
             let fisrtHeadersTable1 = firstHeadersTable;
@@ -89,27 +90,33 @@ export default {
             let celValue_1 = dataFirstTable[fisrtHeadersTable1] + " ";
             let celValue_2 = dataSecondTable[secondHeadersTable] + " ";
 
-            if (celValue_1.trim() === celValue_2.trim()) {
-              particalMatched_1 = true;
-            } else {
+            if (celValue_1.trim() != celValue_2.trim()) {
               allMatched_1 = false;
               count++;
             }
           });
-          if (count == 1) {
-            allNonFirst = false;
-            this.particalMatched_1.push([dataFirstTable, dataSecondTable]);
-          }
+
           if (allMatched_1) {
             allNonFirst = false;
             this.allMatched_1.push([dataFirstTable, dataSecondTable]);
+            particalMatched_1 = false;
+            particalMatchedForRow = [];
+          }
+          if (count == 1 && particalMatched_1) {
+            allNonFirst = false;
+            particalMatchedForRow.push([dataFirstTable, dataSecondTable]);
           }
           count = 0;
         });
+        this.particalMatched_1 = [
+          ...particalMatchedForRow,
+          ...this.particalMatched_1,
+        ];
         if (allNonFirst) {
           this.allNon_1.push(dataFirstTable);
         }
       });
+
       // console.log("Полностью", this.allMatched_1);
       // console.log("Полностью не совпали", this.allNon_1);
       // console.log(this.particalMatched_1);
@@ -133,20 +140,20 @@ export default {
 
             let celValue_1 = dataFirstTable[firstHeadersTable] + " ";
             let celValue_2 = dataSecondTable[SecondHeaders] + " ";
-            if (celValue_1.trim() === celValue_2.trim()) {
-              particalMatched_2 = true;
-            } else {
+            if (celValue_1.trim() != celValue_2.trim()) {
+              //console.log([celValue_1, celValue_2]);
               allMatched_2 = false;
               count++;
             }
           });
-          if (count == 1) {
-            allNonFirst = false;
-            this.particalMatched_2.push([dataFirstTable, dataSecondTable]);
-          }
           if (allMatched_2) {
             allNonFirst = false;
             this.allMatched_2.push([dataFirstTable, dataSecondTable]);
+            particalMatched_2 = false;
+          }
+          if (count == 1 && particalMatched_2) {
+            allNonFirst = false;
+            this.particalMatched_2.push([dataFirstTable, dataSecondTable]);
           }
           count = 0;
         });
