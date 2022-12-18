@@ -112,6 +112,10 @@ export default {
   background-color: rgb(255, 255, 255);
   width: 600px;
   height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 select {
