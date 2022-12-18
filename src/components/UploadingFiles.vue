@@ -10,11 +10,12 @@
           accept=".xlsx, .xls"
           @change="FirstFileUpload"
         />
+
         <label for="input__file" class="input__file-button">
-          <span v-if="first" class="input__file-button-text">{{
-            selectfileFirst.name
-          }}</span>
-          <span v-else class="input__file-button-text">Выберите файл</span>
+          <div class="input__file-button-text">
+            <span v-if="first" class>{{ selectfileFirst.name }}</span>
+            <span v-else>Выберите файл</span>
+          </div>
         </label>
       </div>
       <div class="SecondFile">
@@ -27,10 +28,10 @@
           @change="SecondFileUpload"
         />
         <label for="input__file2" class="input__file-button">
-          <span v-if="second" class="input__file-button-text">{{
-            selectfileSecond.name
-          }}</span>
-          <span v-else class="input__file-button-text">Выберите файл</span>
+          <div class="input__file-button-text">
+            <span v-if="second">{{ selectfileSecond.name }}</span>
+            <span v-else>Выберите файл</span>
+          </div>
         </label>
       </div>
     </div>
@@ -57,6 +58,9 @@ export default {
       firstFileData: "",
       SecondFileData: "",
     };
+  },
+  mounted() {
+    this.$store.state.refresh = true;
   },
   methods: {
     //превращаю файлы EXCEL в JSON
@@ -105,20 +109,17 @@ export default {
 .AllFiles {
   border: 3px solid;
   border-radius: 60px;
-  width: 500px;
-  height: 300px;
+  width: 390px;
+  height: 100px;
+  padding: 100px;
   margin: 0 auto;
   background-color: rgb(255, 255, 255);
-  min-height: 105px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.FirstFile {
-  margin: 0 0 10px;
-  padding: 80px 0 0 0;
-}
+
 .nextPage {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -128,9 +129,9 @@ export default {
   border: 1px solid;
   border-radius: 10px;
   background-color: #57d585;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 400;
-  height: 30px;
+  height: auto;
   padding: 0 20px;
 }
 .input__file {
@@ -149,11 +150,18 @@ export default {
   text-decoration: none;
   background-color: #57d585;
   margin: 50px;
+  font-size: 20px;
 }
 .Uploading {
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .nonFile {
   margin: 50px;
+  font-size: 20px;
+}
+.FirstFile {
+  margin-right: 5px;
 }
 </style>

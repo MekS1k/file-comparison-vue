@@ -10,7 +10,11 @@
             class="ColumnFirstFile"
           >
             <select v-model="headerFirst[index]" @change="pushHeaders">
-              <option v-for="heading in headersForFirstFile" :key="heading.id">
+              <option
+                v-for="heading in headersForFirstFile"
+                :key="heading.id"
+                :value="heading"
+              >
                 {{ heading }}
               </option>
             </select>
@@ -44,6 +48,7 @@
 </template>
 
 <script>
+import router from "@/router";
 export default {
   data() {
     return {
@@ -63,8 +68,19 @@ export default {
   },
   mounted() {
     this.takeHeader();
+    this.pushHeaders();
+    this.refresh();
   },
   methods: {
+    refresh() {
+      //Если переменная пустая, то перекидываем на главную страницу
+      if (this.$store.state.NameFile1 == "") {
+        router.push("/");
+      }
+      if (this.$store.state.NameFile2 == "") {
+        router.push("/");
+      }
+    },
     pushHeaders() {
       console.log(this.headerFirst);
       console.log(this.headerSecond);
@@ -77,10 +93,12 @@ export default {
       for (let HeaderSecond in this.secondFile) {
         this.headersForSecondFile.push(HeaderSecond);
         console.log(this.headersForSecondFile);
+        this.headerSecond.push(HeaderSecond.trim());
       }
       for (let Headerfirst in this.firstFile) {
         this.headersForFirstFile.push(Headerfirst);
         console.log(this.headersForFirstFile);
+        this.headerFirst.push(Headerfirst.trim());
       }
     },
   },

@@ -1,3 +1,4 @@
+import router from '@/router'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -11,7 +12,7 @@ export default new Vuex.Store({
     NameFile1: '',
     NameFile2: '',
     firstHedaer: [],
-    SecondHeader: []
+    SecondHeader: [],
 
   },
   getters: {

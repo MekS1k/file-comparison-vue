@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import router from "@/router";
 export default {
   components: {},
   data() {
@@ -71,9 +72,19 @@ export default {
   },
   mounted() {
     this.GetNonSimilar();
+    this.refresh();
   },
 
   methods: {
+    refresh() {
+      //Если переменная пустая, то перекидываем на главную страницу
+      if (this.$store.state.NameFile1 == "") {
+        router.push("/");
+      }
+      if (this.$store.state.NameFile2 == "") {
+        router.push("/");
+      }
+    },
     GetNonSimilar() {
       //данных которых нет во второй таблице
       this.$store.state.firstFileData.forEach((dataFirstTable) => {
@@ -194,8 +205,10 @@ export default {
   border-radius: 60px;
   border: 2px solid;
   margin: 15px;
-  padding: 20px;
-  width: 700px;
+  padding: 5px 15px;
+  width: 400px;
+  font-size: 16px;
+  margin-left: 7%;
 }
 .NonInclud {
   display: block;
@@ -203,8 +216,10 @@ export default {
   border-radius: 15px;
   border: 2px solid;
   margin: 15px;
-  padding: 20px;
-  font-size: 20px;
+  padding: 5px 15px;
+  width: 400px;
+  font-size: 16px;
+  margin-left: 15%;
 }
 .particalMatched {
   color: rgb(255, 255, 255);
@@ -212,9 +227,9 @@ export default {
 }
 .form {
   border: 3px solid;
-  max-width: 800px;
+  width: 600px;
   margin: auto;
-  height: 450px;
+  height: 300px;
   overflow: auto;
   border-radius: 70px;
   overflow-x: hidden;
@@ -222,12 +237,16 @@ export default {
 }
 .AllResult {
   border: 3px solid;
-  max-width: 1200px;
+  width: 700px;
   margin: auto;
-  height: 550px;
+  height: 400px;
   overflow: auto;
   border-radius: 70px;
   padding: 20px 0 0 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .textResult {
   font-size: 25px;
