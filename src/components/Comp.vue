@@ -5,11 +5,12 @@
         <div class="block">
           <span class="nameFile">{{ fileName1 }}</span>
           <div
-            v-for="(countSelect, index) in this.headersForFirstFile"
+            v-for="(countSelect, index) in this.countOfSelectFirstFile"
             :key="countSelect.id"
             class="ColumnFirstFile"
           >
             <select v-model="headerFirst[index]" @change="pushHeaders">
+              <option value="">Не выбрано</option>
               <option
                 v-for="heading in headersForFirstFile"
                 :key="heading.id"
@@ -23,11 +24,12 @@
         <div class="block1">
           <span class="nameFile">{{ fileName2 }}</span>
           <div
-            v-for="(countSelect2, index2) in this.headersForSecondFile"
+            v-for="(countSelect2, index2) in this.countOfSelectFirstFile"
             :key="countSelect2.id"
             class="ColumnSecondFile"
           >
             <select v-model="headerSecond[index2]" @change="pushHeaders">
+              <option value="">Не выбрано</option>
               <option
                 v-for="heading2 in headersForSecondFile"
                 :key="heading2.id"
@@ -64,12 +66,20 @@ export default {
       colomnValue2: [],
       headerFirst: [],
       headerSecond: [],
+      countOfSelectFirstFile: [],
+      countOfSelectSecondFile: [],
     };
   },
   mounted() {
     this.takeHeader();
     this.pushHeaders();
     this.refresh();
+    if (this.countOfSelectFirstFile.length > 5) {
+      this.countOfSelectFirstFile.length = 5;
+    }
+    if (this.countOfSelectSecondFile.length > 5) {
+      this.countOfSelectSecondFile.length = 5;
+    }
   },
   methods: {
     refresh() {
@@ -92,11 +102,13 @@ export default {
       //беру заголовки
       for (let HeaderSecond in this.secondFile) {
         this.headersForSecondFile.push(HeaderSecond);
+        this.countOfSelectSecondFile.push(HeaderSecond);
         console.log(this.headersForSecondFile);
         this.headerSecond.push(HeaderSecond.trim());
       }
       for (let Headerfirst in this.firstFile) {
         this.headersForFirstFile.push(Headerfirst);
+        this.countOfSelectFirstFile.push(Headerfirst);
         console.log(this.headersForFirstFile);
         this.headerFirst.push(Headerfirst.trim());
       }
@@ -111,7 +123,7 @@ export default {
   border-radius: 60px;
   background-color: rgb(255, 255, 255);
   width: 600px;
-  height: 300px;
+  height: 350px;
   position: absolute;
   top: 50%;
   left: 50%;

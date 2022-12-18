@@ -1,7 +1,17 @@
 <template>
   <div class="AllResult">
     <span class="textResult">Результат сравнения</span>
-    <div class="form">
+    <span
+      class="nonComp"
+      v-if="
+        particalMatched_1 == '' &&
+        particalMatched_2 == '' &&
+        allNon_1 == '' &&
+        allNon_2 == ''
+      "
+      >Разницы нет</span
+    >
+    <div v-else class="form">
       <div class="res-blck">
         <div>
           <span
@@ -249,6 +259,16 @@ export default {
   transform: translate(-50%, -50%);
 }
 .textResult {
+  font-size: 25px;
+  font-weight: 900;
+}
+.nonComp {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 25px;
   font-weight: 900;
 }
